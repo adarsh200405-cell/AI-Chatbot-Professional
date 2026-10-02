@@ -1,0 +1,23 @@
+# Feature checklist
+- [x] Project backup (sanitized, no API key)
+- [x] Professional responsive UI
+- [x] Sidebar + New Chat
+- [x] Dark / Light / System theme
+- [x] Persistent SQLite chat history
+- [x] Rename / Delete / Search chats
+- [x] Markdown rendering
+- [x] Copy response / Copy code
+- [x] Streaming response
+- [x] Stop generation
+- [x] Regenerate response
+- [x] Conversation memory
+- [x] Speech-to-text
+- [x] Text-to-speech
+- [x] PDF upload + text extraction
+- [x] Settings panel
+- [x] API key via .env
+- [x] .env / venv protection in gitignore
+- [x] Friendly API errors
+- [x] Basic rate limiting
+- [x] Mobile responsive layout
+- [x] README + start.bat

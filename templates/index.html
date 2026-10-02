@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111827">
+<title>AI Assistant</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-icon">✦</div><div><strong>AI Assistant</strong><small>Gemini powered</small></div></div>
+    <button class="new-chat" id="new-chat">＋ New Chat</button>
+    <div class="history-head"><span>Recent chats</span><button id="search-toggle" title="Search history">⌕</button></div>
+    <div id="search-wrap" class="search-wrap hidden"><input id="history-search" placeholder="Search chats..."></div>
+    <div id="chat-list" class="chat-list"></div>
+    <div class="sidebar-bottom">
+      <button class="side-action" id="settings-btn">⚙ <span>Settings</span></button>
+      <button class="side-action" id="about-btn">ⓘ <span>About</span></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn mobile-only" id="menu-btn">☰</button>
+      <div class="top-title"><div class="online-dot"></div><div><strong id="chat-title">New Chat</strong><small id="model-label">Gemini</small></div></div>
+      <div class="top-actions">
+        <button class="icon-btn" id="theme-btn" title="Toggle theme">☾</button>
+        <button class="icon-btn" id="clear-btn" title="Clear current chat">⌫</button>
+      </div>
+    </header>
+
+    <section id="chat-box" class="chat-box">
+      <div id="welcome" class="welcome">
+        <div class="welcome-mark">✦</div>
+        <h1>How can I help you today?</h1>
+        <p>Ask questions, write code, explain concepts, or upload a PDF to chat with it.</p>
+        <div class="suggestions">
+          <button data-prompt="Explain this concept in simple Hinglish.">💡 Explain a concept</button>
+          <button data-prompt="Help me write a clean Python program.">⌘ Write code</button>
+          <button data-prompt="Give me a step-by-step study plan.">📚 Make a study plan</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="typing" class="typing hidden"><span class="dots"><i></i><i></i><i></i></span><span>AI is thinking...</span><button id="stop-btn">Stop</button></div>
+    <div id="attachment" class="attachment hidden"></div>
+
+    <section class="composer-wrap">
+      <div class="composer">
+        <button class="attach-btn" id="attach-btn" title="Upload PDF">＋</button>
+        <input type="file" id="file-input" accept=".pdf,application/pdf" hidden>
+        <textarea id="message-input" rows="1" placeholder="Message AI Assistant..."></textarea>
+        <button class="voice-btn" id="voice-btn" title="Voice input">🎙</button>
+        <button class="send-btn" id="send-btn" title="Send">➤</button>
+      </div>
+      <div class="composer-note">Enter to send · Shift+Enter for new line · <span id="voice-status"></span></div>
+    </section>
+    <footer>AI can make mistakes. Verify important information.</footer>
+  </main>
+</div>
+
+<div class="modal hidden" id="settings-modal">
+  <div class="modal-card">
+    <div class="modal-head"><h2>Settings</h2><button class="icon-btn close-modal">×</button></div>
+    <label>Theme<select id="theme-select"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+    <label>Language<select id="language-select"><option value="en">English</option><option value="hinglish">Hinglish</option></select></label>
+    <label>Font size<select id="font-select"><option value="small">Small</option><option value="medium">Medium</option><option value="large">Large</option></select></label>
+    <label>AI response style<select id="style-select"><option value="balanced">Balanced</option><option value="concise">Concise</option><option value="detailed">Detailed</option></select></label>
+    <button class="danger-btn" id="clear-all">Delete all chats</button>
+  </div>
+</div>
+
+<div class="modal hidden" id="about-modal">
+  <div class="modal-card about"><div class="modal-head"><h2>About</h2><button class="icon-btn close-modal">×</button></div><div class="about-mark">✦</div><h3>AI Assistant</h3><p>A modern Flask + Gemini chatbot with chat history, memory, streaming responses, PDF chat and voice features.</p><small>Built for learning and prototyping.</small></div>
+</div>
+
+<script>window.APP_MODEL={{ model|tojson }};</script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

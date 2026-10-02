@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="logo">🤖 <span>AI Assistant</span></div>
+        <button class="new-chat" onclick="newChat()">+ New Chat</button>
+        <div class="sidebar-info">
+            <p>AI-powered chatbot</p>
+            <p>Ask me anything.</p>
+        </div>
+    </aside>
+
+    <main class="chat-container">
+        <header class="chat-header">
+            <div>
+                <h1>AI Assistant</h1>
+                <span class="status">● Online</span>
+            </div>
+            <button class="clear-btn" onclick="newChat()">Clear</button>
+        </header>
+
+        <section id="chat-box" class="chat-box">
+            <div class="message bot">
+                <div class="avatar">🤖</div>
+                <div class="message-content">
+                    <p>Hello! 👋</p>
+                    <p>I'm your AI Assistant. How can I help you today?</p>
+                </div>
+            </div>
+        </section>
+
+        <div id="typing" class="typing hidden">🤖 AI is typing...</div>
+
+        <div class="input-area">
+            <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
+            <button id="send-btn" onclick="sendMessage()">➤</button>
+        </div>
+
+        <p class="disclaimer">AI can make mistakes. Please verify important information.</p>
+    </main>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
