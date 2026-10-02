@@ -18,7 +18,12 @@ load_dotenv(os.path.join(BASE_DIR, ".env"), override=True)
 
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 12 * 1024 * 1024
-DB_PATH = os.path.join(BASE_DIR, "data", "chatbot.db")
+# SQLite database path
+# Vercel serverless environment uses /tmp for writable files.
+if os.getenv("VERCEL") == "1":
+    DB_PATH = "/tmp/chatbot.db"
+else:
+    DB_PATH = os.path.join(BASE_DIR, "data", "chatbot.db")
 
 API_KEY = os.getenv("GEMINI_API_KEY")
 MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
